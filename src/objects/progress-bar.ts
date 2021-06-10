@@ -59,7 +59,7 @@ export class ProgressBar extends GameObjects.Group {
       text: this.options.barLabel,
       style: {
         font: '24px monospace',
-        fill: this.options.textColor.rgba,
+        color: this.options.textColor.rgba,
       }
     }).setOrigin(0.5, 0.5);
 

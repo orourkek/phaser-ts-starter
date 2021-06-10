@@ -41,7 +41,7 @@ export class BootScene extends Scene {
       text: '',
       style: {
         font: '16px monospace',
-        fill: palette.dark,
+        color: palette.dark.rgba,
       }
     }).setOrigin(0.5, 0.5);
 

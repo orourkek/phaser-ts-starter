@@ -21,7 +21,7 @@ export class DebugHUD extends GameObjects.Container {
       fontSize: '16px',
       padding: { x: 8, y: 4 },
       backgroundColor: '#000000AA',
-      fill: '#ffffff',
+      color: '#ffffff',
     });
 
     this.add(this.text);

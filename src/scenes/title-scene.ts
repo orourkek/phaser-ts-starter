@@ -10,7 +10,7 @@ export class TitleScene extends Scene {
   }
 
   preload() {
-    this.scene.launch('MainScene').sendToBack('MainScene').sleep('MainScene');
+    this.scene.launch('GameScene').sendToBack('GameScene').sleep('GameScene');
   }
 
   create() {
@@ -63,6 +63,6 @@ export class TitleScene extends Scene {
   }
 
   startGame() {
-    this.scene.stop('TitleScene').bringToTop('MainScene').wake('MainScene');
+    this.scene.stop('TitleScene').bringToTop('GameScene').wake('GameScene');
   }
 }

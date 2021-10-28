@@ -29,7 +29,7 @@ export class GameOver extends Scene {
   public init(data: any) {
     this.status = data.status || 'lose';
     this.message = data.message || '';
-    this.originScene = data?.originScene || 'MainScene';
+    this.originScene = data?.originScene || 'GameScene';
   }
 
   public create() {

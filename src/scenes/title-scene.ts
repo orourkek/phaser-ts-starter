@@ -2,10 +2,9 @@ import { Scene, Display, GameObjects } from 'phaser';
 import { palette } from '../colors';
 
 export class TitleScene extends Scene {
-
   private title: GameObjects.Text;
 
-  constructor(){
+  constructor() {
     super('TitleScene');
   }
 
@@ -16,18 +15,15 @@ export class TitleScene extends Scene {
   create() {
     const { width, height, centerX, centerY } = this.cameras.main;
 
-    this.add.rectangle(
-      0,
-      0,
-      width,
-      height,
-      palette.white.color,
-    ).setOrigin(0, 0);
+    this.add
+      .rectangle(0, 0, width, height, palette.white.color)
+      .setOrigin(0, 0);
 
     const color1 = palette.red;
     const color2 = palette.orange;
 
-    this.title = this.add.text(centerX, centerY, '<insert name here>')
+    this.title = this.add
+      .text(centerX, centerY, '<insert name here>')
       .setFontFamily('"Press Start 2P"')
       .setAlign('center')
       .setFontSize(64)
@@ -50,10 +46,11 @@ export class TitleScene extends Scene {
           tween.getValue()
         );
         this.title.setColor(Display.Color.ObjectToColor(color).rgba);
-      }
+      },
     });
 
-    this.add.text(centerX, height - 64, 'PRESS ANY KEY TO START')
+    this.add
+      .text(centerX, height - 64, 'PRESS ANY KEY TO START')
       .setFontFamily('"Press Start 2P"')
       .setFontSize(18)
       .setOrigin(0.5, 0.5)

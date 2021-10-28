@@ -9,11 +9,14 @@ export class Ground extends GameObjects.Rectangle {
 
   elevation: number;
 
-  constructor(scene: Scene, opts: {
-    elevation?: number,
-    bg?: number,
-    bgOpacity?: number,
-  } = {}) {
+  constructor(
+    scene: Scene,
+    opts: {
+      elevation?: number;
+      bg?: number;
+      bgOpacity?: number;
+    } = {}
+  ) {
     const elevation = opts.elevation ?? 0;
 
     super(
@@ -23,7 +26,7 @@ export class Ground extends GameObjects.Rectangle {
       scene.physics.world.bounds.width,
       Math.max(10, Math.round(elevation)),
       opts.bg ?? 0x1a1b1c,
-      opts.bgOpacity ?? 1.0,
+      opts.bgOpacity ?? 1.0
     );
 
     this.scene = scene;

@@ -4,7 +4,6 @@ import { ProgressBar } from '../objects/progress-bar';
 import { palette } from '../colors';
 
 export class BootScene extends Scene {
-
   private progressBar: ProgressBar;
   private assetText: GameObjects.Text;
 
@@ -16,13 +15,9 @@ export class BootScene extends Scene {
     const { width, height, centerX, centerY } = this.cameras.main;
 
     // background
-    this.add.rectangle(
-      0,
-      0,
-      width,
-      height,
-      palette.white.color,
-    ).setOrigin(0, 0);
+    this.add
+      .rectangle(0, 0, width, height, palette.white.color)
+      .setOrigin(0, 0);
 
     this.progressBar = new ProgressBar(this, {
       x: centerX,
@@ -35,15 +30,17 @@ export class BootScene extends Scene {
       textColor: palette.white,
     });
 
-    this.assetText = this.make.text({
-      x: centerX,
-      y: centerY + (height / 8),
-      text: '',
-      style: {
-        font: '16px monospace',
-        color: palette.dark.rgba,
-      }
-    }).setOrigin(0.5, 0.5);
+    this.assetText = this.make
+      .text({
+        x: centerX,
+        y: centerY + height / 8,
+        text: '',
+        style: {
+          font: '16px monospace',
+          color: palette.dark.rgba,
+        },
+      })
+      .setOrigin(0.5, 0.5);
 
     this.load.on('progress', (value: number) => {
       this.progressBar.setProgress(value);

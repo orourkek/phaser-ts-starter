@@ -14,7 +14,6 @@ interface Options {
 }
 
 export class ProgressBar extends GameObjects.Group {
-
   public static readonly defaultOptions: Options = {
     x: 400,
     y: 300,
@@ -44,15 +43,17 @@ export class ProgressBar extends GameObjects.Group {
 
     this.createBackground();
 
-    this.barLabel = this.scene.make.text({
-      x: this.options.x,
-      y: this.options.y,
-      text: this.options.barLabel,
-      style: {
-        font: '24px monospace',
-        color: this.options.textColor.rgba,
-      }
-    }).setOrigin(0.5, 0.5);
+    this.barLabel = this.scene.make
+      .text({
+        x: this.options.x,
+        y: this.options.y,
+        text: this.options.barLabel,
+        style: {
+          font: '24px monospace',
+          color: this.options.textColor.rgba,
+        },
+      })
+      .setOrigin(0.5, 0.5);
 
     this.add(this.graphics);
     this.add(this.barLabel);
@@ -68,8 +69,8 @@ export class ProgressBar extends GameObjects.Group {
     }
     this.graphics.fillStyle(this.options.barColor.color, 1);
     this.graphics.fillRect(
-      (this.options.x - this.options.width / 2),
-      (this.options.y - this.options.height / 2),
+      this.options.x - this.options.width / 2,
+      this.options.y - this.options.height / 2,
       this.options.width * pct,
       this.options.height
     );
@@ -84,10 +85,10 @@ export class ProgressBar extends GameObjects.Group {
     // Progress bar "box"
     this.graphics.fillStyle(this.options.barBgColor.color, 1);
     this.graphics.fillRect(
-      (this.options.x - this.options.width / 2) - this.options.padding,
-      (this.options.y - this.options.height / 2) - this.options.padding,
-      this.options.width + (this.options.padding * 2),
-      this.options.height + (this.options.padding * 2)
+      this.options.x - this.options.width / 2 - this.options.padding,
+      this.options.y - this.options.height / 2 - this.options.padding,
+      this.options.width + this.options.padding * 2,
+      this.options.height + this.options.padding * 2
     );
   }
 }

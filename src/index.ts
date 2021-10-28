@@ -16,11 +16,13 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
     pixelArt: true,
   },
   plugins: {
-    global: [{
-      key: 'WebFontLoader',
-      plugin: WebFontLoaderPlugin,
-      start: true,
-    }],
+    global: [
+      {
+        key: 'WebFontLoader',
+        plugin: WebFontLoaderPlugin,
+        start: true,
+      },
+    ],
   },
   physics: {
     default: 'arcade',
@@ -32,12 +34,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
       },
     },
   },
-  scene: [
-    BootScene,
-    TitleScene,
-    GameScene,
-    GameOver,
-  ],
+  scene: [BootScene, TitleScene, GameScene, GameOver],
 };
 
 const game = new Phaser.Game(gameConfig);

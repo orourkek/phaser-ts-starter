@@ -7,10 +7,9 @@ const enum GameEndStatus {
 }
 
 export class GameOver extends Scene {
-
   private status: GameEndStatus;
   private message: string;
-  private altitude: number;
+  private originScene: string;
 
   private bgColor: Record<GameEndStatus, number> = {
     [GameEndStatus.Win]: palette.green.color,
@@ -29,22 +28,18 @@ export class GameOver extends Scene {
   public init(data: any) {
     this.status = data.status || 'lose';
     this.message = data.message || '';
-    this.altitude = data.altitude;
+    this.originScene = data?.originScene || 'GameScene';
   }
 
   public create() {
     const { width, height, centerX, centerY } = this.cameras.main;
 
-    this.add.rectangle(
-      0,
-      0,
-      width,
-      height,
-      this.bgColor[this.status],
-      0.8
-    ).setOrigin(0, 0);
+    this.add
+      .rectangle(0, 0, width, height, this.bgColor[this.status], 0.8)
+      .setOrigin(0, 0);
 
-    this.add.text(centerX, centerY - 32, this.label[this.status])
+    this.add
+      .text(centerX, centerY - 32, this.label[this.status])
       .setFontFamily('"Press Start 2P"')
       .setFontSize(64)
       .setOrigin(0.5, 0.5)
@@ -53,7 +48,8 @@ export class GameOver extends Scene {
       .setScrollFactor(0, 0);
 
     if (this.message) {
-      this.add.text(centerX, centerY + 64, this.message)
+      this.add
+        .text(centerX, centerY + 64, this.message)
         .setFontFamily('"Press Start 2P"')
         .setFontSize(16)
         .setWordWrapWidth(width - 24)
@@ -64,18 +60,23 @@ export class GameOver extends Scene {
         .setScrollFactor(0, 0);
     }
 
-    this.add.text(centerX, height - 64, 'Press [space] to restart')
+    this.add
+      .text(centerX, height - 64, 'Press [r] to restart')
       .setFontFamily('"Press Start 2P"')
       .setFontSize(24)
       .setOrigin(0.5, 0.5)
       .setColor(palette.white.rgba)
       .setScrollFactor(0, 0);
 
-    this.input.keyboard.once('keydown-SPACE', this.restartGame, this);
+    this.input.keyboard.once('keydown-R', this.restartGame, this);
+
+    if (this.status === 'lose') {
+      this.sound.play('lose');
+    }
   }
 
   restartGame() {
-    this.scene.stop();
-    this.scene.get('MainScene').scene.restart();
+    this.scene.get(this.originScene).scene.restart({ isRestart: true });
+    this.scene.stop('GameOver');
   }
 }

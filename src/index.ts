@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import { WebFontLoaderPlugin } from 'phaser3-webfont-loader';
-import { MainScene } from './scenes/main-scene';
+import { GameScene } from './scenes/game-scene';
 import { TitleScene } from './scenes/title-scene';
 import { BootScene } from './scenes/boot';
 import { GameOver } from './scenes/game-over';
@@ -16,11 +16,13 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
     pixelArt: true,
   },
   plugins: {
-    global: [{
-      key: 'WebFontLoader',
-      plugin: WebFontLoaderPlugin,
-      start: true,
-    }],
+    global: [
+      {
+        key: 'WebFontLoader',
+        plugin: WebFontLoaderPlugin,
+        start: true,
+      },
+    ],
   },
   physics: {
     default: 'arcade',
@@ -32,12 +34,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
       },
     },
   },
-  scene: [
-    BootScene,
-    TitleScene,
-    MainScene,
-    GameOver,
-  ],
+  scene: [BootScene, TitleScene, GameScene, GameOver],
 };
 
 const game = new Phaser.Game(gameConfig);

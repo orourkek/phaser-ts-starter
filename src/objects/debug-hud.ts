@@ -1,9 +1,8 @@
 import { GameObjects, Scene } from 'phaser';
-import { MainScene } from '../scenes/main-scene';
+import { GameScene } from '../scenes/game-scene';
 
 export class DebugHUD extends GameObjects.Container {
-
-  public scene: MainScene;
+  public scene: GameScene;
 
   private enabled: boolean;
   private text: GameObjects.Text;

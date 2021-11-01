@@ -1,8 +1,7 @@
 import { GameObjects, Scene } from 'phaser';
 import { DebugHUD } from '../objects/debug-hud';
 
-export class MainScene extends Scene {
-
+export class GameScene extends Scene {
   public keyboard: {
     [k: string]: Phaser.Input.Keyboard.Key;
   };
@@ -10,7 +9,7 @@ export class MainScene extends Scene {
   private debugHUD: DebugHUD;
 
   constructor() {
-    super('MainScene');
+    super('GameScene');
     (window as any).scene = this;
   }
 
@@ -28,10 +27,8 @@ export class MainScene extends Scene {
   }
 
   public gameOver(status: 'win' | 'lose', message = '') {
-    this.scene.launch('GameOver', {
-      status,
-      message,
-    }).bringToTop('GameOver');
+    this.scene.launch('GameOver', { status, message });
+    this.scene.bringToTop('GameOver');
     this.scene.pause();
   }
 }
